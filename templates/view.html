@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View Data</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 40px;
+    }
+    table {
+      width: 60%;
+      margin: auto;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    .center {
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">User Data from MongoDB</h2>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+      <td>{{ user['_id'] }}</td>
+      <td>{{ user['name'] }}</td>
+      <td>{{ user['email'] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <div class="center">
+    <a href="/">⬅ Back to Form</a>
+  </div>
+</body>
+</html>
