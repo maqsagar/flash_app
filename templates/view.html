@@ -51,6 +51,22 @@
     {% endfor %}
   </table>
 
+    <h2 style="text-align:center;">TO DO from MongoDB</h2>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>List</th>
+      <th>Description</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+      <td>{{ user['_id'] }}</td>
+      <td>{{ user['itemName'] }}</td>
+      <td>{{ user['itemDescription'] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
   <div class="center">
     <a href="/">⬅ Back to Form</a>
   </div>
