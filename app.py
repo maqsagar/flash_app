@@ -48,38 +48,15 @@ def view_data():
         return f"<h3>Error loading data: {e}</h3>"
 
 
-# --- to do Page ---
+# --- Todo Page start ---
 
-@app.route("/todo", methods=["GET"])
+
+@app.route('/todo')
 def todo_page():
-    return render_template("todo.html")
-
-
-@app.route("/submittodoitem", methods=["POST"])
-def submit_todo_item():
-    try:
-        data = request.get_json()
-        item_name = data.get("itemName")
-        item_description = data.get("itemDescription")
-
-        if not item_name or not item_description:
-            return {"error": "Both fields are required"}, 400
-
-        todo_collection = db["todo_items"]
-        todo_collection.insert_one({
-            "itemName": item_name,
-            "itemDescription": item_description
-        })
-
-        return {"message": "To-Do item added successfully"}, 201
-
-    except Exception as e:
-        return {"error": str(e)}, 500
-
-
-# --- to do Page end---
+    return render_template('todo.html')
 
 
 
+# --- Todo end Page ---
 if __name__ == "__main__":
     app.run(debug=True)
