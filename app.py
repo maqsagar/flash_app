@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 #removed
@@ -50,10 +50,26 @@ def view_data():
 
 # --- Todo Page start ---
 
-
 @app.route('/todo')
 def todo_page():
     return render_template('todo.html')
+
+@app.route('/submittodoitem', methods=['POST'])
+def submit_todo_item():
+    data = request.get_json()
+    item_name = data.get("itemName")
+    item_description = data.get("itemDescription")
+
+    if not item_name or not item_description:
+        return jsonify({"error": "Both fields are required"}), 400
+
+    collection.insert_one({
+        "itemName": item_name,
+        "itemDescription": item_description
+    })
+    return jsonify({"message": "Item saved successfully"}), 201
+
+# --- to do Page end---
 
 
 
